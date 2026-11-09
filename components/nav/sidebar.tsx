@@ -14,6 +14,7 @@ const PLATFORMS = [
 ];
 
 const UTILITIES = [
+  { label: "Connections", short: "⇄", href: "/connections", color: "#6B7280" },
   { label: "Import", short: "↑", href: "/import", color: "#6B7280" },
   { label: "Pillars", short: "#", href: "/pillars", color: "#6B7280" },
 ];

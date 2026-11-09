@@ -57,3 +57,6 @@ config/pillars.json
 # keep the env template
 !.env.example
 orca.yaml
+
+# encryption key for platform logins (local dev)
+/data/

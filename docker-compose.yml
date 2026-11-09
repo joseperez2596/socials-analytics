@@ -22,6 +22,8 @@ services:
       DATABASE_URL: postgresql://analytics:${POSTGRES_PASSWORD:-changeme}@analytics-db:5432/analytics
       DASHBOARD_TITLE: ${DASHBOARD_TITLE:-Social Analytics}
       PILLARS_FILE: ${PILLARS_FILE:-}
+    volumes:
+      - app_data:/app/data   # encryption key for platform logins; keep it with your DB backups
     depends_on:
       - analytics-db
     networks:
@@ -36,3 +38,5 @@ networks:
 volumes:
   analytics_data:
     name: analytics_data
+  app_data:
+    name: analytics_app_data

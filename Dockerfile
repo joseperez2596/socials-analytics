@@ -22,6 +22,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/migrations ./migrations
 COPY --from=builder --chown=nextjs:nodejs /app/migrate.js ./migrate.js
 COPY --from=builder --chown=nextjs:nodejs /app/seed ./seed
 COPY --from=builder --chown=nextjs:nodejs /app/config ./config
+# Encryption key for stored platform logins lives here (mounted as a volume).
+RUN mkdir -p /app/data && chown nextjs:nodejs /app/data
 USER nextjs
 EXPOSE 3000
 CMD ["sh", "-c", "node migrate.js && node server.js"]

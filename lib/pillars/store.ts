@@ -16,7 +16,7 @@ function loadFile(): FileConfig {
   ) as string[];
   for (const file of candidates) {
     // turbopackIgnore: runtime path; without it the build traces the whole repo into .next/standalone.
-    const full = path.join(/* turbopackIgnore: true */ process.cwd(), file);
+    const full = path.resolve(/* turbopackIgnore: true */ process.cwd(), file); // absolute paths stay absolute
     if (fs.existsSync(full)) return JSON.parse(fs.readFileSync(full, "utf8"));
   }
   return { default: {} };
