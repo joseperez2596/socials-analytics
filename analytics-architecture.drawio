@@ -1,0 +1,85 @@
+<mxfile host="Electron">
+  <diagram name="Analytics Architecture" id="0">
+    <mxGraphModel dx="958" dy="744" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#666666;" value="External APIs" vertex="1">
+          <mxGeometry height="20" width="200" x="30" y="12" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontStyle=1;" value="TikTok API v2" vertex="1">
+          <mxGeometry height="60" width="180" x="80" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" value="Meta Graph API v22&#xa;(Facebook + Instagram)" vertex="1">
+          <mxGeometry height="60" width="180" x="420" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" value="YouTube Data API&#xa;+ Analytics API" vertex="1">
+          <mxGeometry height="60" width="180" x="760" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="swimlane;startSize=30;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=11;" value="n8n · Manual Workflows · localhost:5678" vertex="1">
+          <mxGeometry height="110" width="980" x="30" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="TikTok Sync&#xa;Manual Trigger" vertex="1">
+          <mxGeometry height="50" width="180" x="50" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Meta Sync&#xa;Manual Trigger" vertex="1">
+          <mxGeometry height="50" width="180" x="390" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="YouTube Sync&#xa;Manual Trigger" vertex="1">
+          <mxGeometry height="50" width="180" x="730" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="swimlane;startSize=30;fillColor=#D5E8D4;strokeColor=#82B366;fontStyle=1;fontSize=11;" value="PostgreSQL 17 · analytics-db · :5432 internal / :5433 external" vertex="1">
+          <mxGeometry height="120" width="980" x="30" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="10" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="TikTok&#xa;tiktok_snapshots&#xa;tiktok_videos" vertex="1">
+          <mxGeometry height="60" width="180" x="50" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="10" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Meta (FB + IG)&#xa;fb_snapshots · fb_daily · fb_posts&#xa;ig_snapshots · ig_daily · ig_media" vertex="1">
+          <mxGeometry height="60" width="200" x="380" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="10" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="YouTube&#xa;yt_snapshots · yt_daily · yt_videos&#xa;yt_traffic_sources · yt_geography" vertex="1">
+          <mxGeometry height="60" width="210" x="720" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="swimlane;startSize=30;fillColor=#FFE6CC;strokeColor=#D79B00;fontStyle=1;fontSize=11;" value="Next.js 15 Dashboard · analytics-dashboard · :3000 internal / :3030 external" vertex="1">
+          <mxGeometry height="120" width="980" x="30" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="14" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" value="App Router (RSC)&#xa;19 report pages&#xa;TikTok · Meta · IG · YouTube" vertex="1">
+          <mxGeometry height="60" width="200" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="14" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" value="Query Layer&#xa;lib/queries/*.ts&#xa;pg Pool · raw SQL" vertex="1">
+          <mxGeometry height="60" width="200" x="380" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="14" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" value="UI Components&#xa;Recharts · shadcn/ui&#xa;Sidebar + Sub-nav" vertex="1">
+          <mxGeometry height="60" width="200" x="740" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" value="Browser (Cynthia)&#xa;http://localhost:3030" vertex="1">
+          <mxGeometry height="70" width="200" x="410" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="20" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="21" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="22" edge="1" parent="1" source="5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="23" edge="1" parent="1" source="7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;" target="11" value="UPSERT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="24" edge="1" parent="1" source="8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;" target="12" value="UPSERT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="25" edge="1" parent="1" source="9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;" target="13" value="UPSERT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="26" edge="1" parent="1" source="10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;" target="14" value="pg Pool / raw SQL">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="27" edge="1" parent="1" source="14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;" target="18" value="HTTP :3030">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

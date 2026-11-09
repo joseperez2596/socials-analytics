@@ -1,0 +1,9 @@
+{
+  "name": "strategy-webhook",
+  "version": "1.0.0",
+  "description": "Host-side webhook that generates AI strategy cards via claude CLI and upserts them into PostgreSQL",
+  "main": "strategy-webhook.js",
+  "dependencies": {
+    "pg": "^8"
+  }
+}

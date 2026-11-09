@@ -1,0 +1,8 @@
+{
+  "default": {
+    "Tutorials": ["how to", "tutorial", "tips", "guide", "step"],
+    "Behind the scenes": ["behind", "bts", "process", "making of"],
+    "Lifestyle": ["day", "life", "routine", "vlog", "week"],
+    "Community": ["q&a", "question", "giveaway", "thank", "you asked"]
+  }
+}
