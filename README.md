@@ -67,20 +67,21 @@ Imports are upserts, so re-importing the same file is safe. You can also write t
 | `DB_PORT` / `APP_PORT` | `5433` / `3030` | Host ports |
 | `DATABASE_URL` | none | Used by `npm run dev/migrate/seed` outside Docker |
 | `DASHBOARD_TITLE` | `Social Analytics` | Browser tab title (read at runtime) |
-| `PILLARS_FILE` | `config/pillars.json` | Content-category keywords |
+| `PILLARS_FILE` | `config/pillars.json` | Starting pillar keywords, used until the first save on the Pillars page |
 
 ### Content pillars
 
-Posts are put into categories by matching keywords in their title or caption. The first match wins, and anything unmatched is `Other`. Copy `config/pillars.example.json` to `config/pillars.json` (gitignored) and edit it:
+Posts are grouped into categories ("pillars") by keywords in their title or caption. The first match wins, and anything unmatched counts as `Other`.
 
-```json
-{
-  "default": { "Tutorials": ["how to", "tutorial"], "Vlogs": ["vlog", "day in"] },
-  "youtube": { "Long-form": ["full class", "masterclass"] }
-}
-```
+Edit them on the **Pillars** page (sidebar, or **Edit keywords** on any platform's Pillars tab):
 
-A platform key (`tiktok`, `instagram`, `facebook`, `youtube`) replaces `default` for that platform.
+- Rename pillars, add or remove keywords, and see how many posts each one catches, all updating live.
+- **Suggested keywords** lists the most common words in uncategorised posts (filler words in English, Spanish and Portuguese are skipped). Click one to add it to a pillar.
+- **All platforms** is the shared list. Use **Customise for YouTube** (etc.) to give a platform its own list, and **Use All platforms list** to go back.
+
+Keywords are stored in the `pillar_keywords` table. Until the first save, the starting lists come from `config/pillars.json` (gitignored), or from `config/pillars.example.json` if that file doesn't exist (override the path with `PILLARS_FILE`).
+
+> There is no login. Anyone who can open the dashboard can edit keywords and import data, so run it on a trusted network or behind your own auth proxy.
 
 ## Roadmap
 

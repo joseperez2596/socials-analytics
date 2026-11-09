@@ -1,11 +1,13 @@
+import Link from "next/link";
 import { PillarCard } from "@/components/reports/pillar-card";
 import { getFbPosts } from "@/lib/queries/facebook";
-import { classifyByKeywords, getPillars } from "@/lib/pillar-classification";
+import { classifyByKeywords } from "@/lib/pillars/classify";
+import { getPillars } from "@/lib/pillars/store";
 
 const ACCENT = "#1877F2";
 
 export default async function FacebookPillarsPage() {
-  const PILLAR_KEYWORDS = getPillars("facebook");
+  const PILLAR_KEYWORDS = await getPillars("facebook");
   const posts = await getFbPosts(30).catch(() => []);
 
   type PillarStats = { name: string; postCount: number; totalInteractions: number };
@@ -22,7 +24,12 @@ export default async function FacebookPillarsPage() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-bold">Facebook Pillars</h2>
+      <div className="flex items-baseline justify-between gap-3">
+        <h2 className="text-xl font-bold">Facebook Pillars</h2>
+        <Link href="/pillars?platform=facebook" className="font-mono text-xs text-ink/50 hover:text-ink underline underline-offset-4">
+          Edit keywords
+        </Link>
+      </div>
       {sorted.length === 0 ? (
         <p className="text-ink/40">No post data available.</p>
       ) : (

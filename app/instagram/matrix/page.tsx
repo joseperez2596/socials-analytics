@@ -2,12 +2,13 @@ import { ScatterMatrix } from "@/components/charts/scatter-matrix";
 import { PostTable } from "@/components/reports/post-table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getIgMedia, getIgSnapshot } from "@/lib/queries/instagram";
-import { classifyByKeywords, getPillars } from "@/lib/pillar-classification";
+import { classifyByKeywords } from "@/lib/pillars/classify";
+import { getPillars } from "@/lib/pillars/store";
 
 const ACCENT = "#E1306C";
 
 export default async function InstagramMatrixPage() {
-  const PILLAR_KEYWORDS = getPillars("instagram");
+  const PILLAR_KEYWORDS = await getPillars("instagram");
   const [media, snap] = await Promise.all([
     getIgMedia(20).catch(() => []),
     getIgSnapshot().catch(() => null),

@@ -1,7 +1,8 @@
 -- Demo data for a fictional creator. Dates are relative to today; safe to re-run.
 -- Load with: npm run seed  (or: docker compose exec analytics-dashboard node migrate.js seed)
 
--- Titles/captions shared by all platforms; keywords match config/pillars.example.json
+-- Titles/captions shared by all platforms. Most match config/pillars.example.json; the last few
+-- deliberately match nothing so /pillars has keyword suggestions to show.
 CREATE TEMP TABLE demo_titles AS
 SELECT i, (ARRAY[
   'How to start a morning routine that sticks',
@@ -13,8 +14,12 @@ SELECT i, (ARRAY[
   'The making of our latest video',
   '5 tips to edit faster',
   'Thank you for 10K, giveaway inside',
-  'Step by step guide to batching content'
-])[1 + (i % 10)] AS title
+  'Step by step guide to batching content',
+  'Camera gear I actually use',
+  'Color grading my first short film',
+  'Reacting to your edits',
+  'Studio lighting setup under 200'
+])[1 + (i % 14)] AS title
 FROM generate_series(0, 19) AS i;
 
 -- TikTok

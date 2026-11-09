@@ -2,12 +2,13 @@ import { ScatterMatrix } from "@/components/charts/scatter-matrix";
 import { PostTable } from "@/components/reports/post-table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getYtVideos } from "@/lib/queries/youtube";
-import { classifyByKeywords, getPillars } from "@/lib/pillar-classification";
+import { classifyByKeywords } from "@/lib/pillars/classify";
+import { getPillars } from "@/lib/pillars/store";
 
 const ACCENT = "#FF0000";
 
 export default async function YoutubeMatrixPage() {
-  const YT_PILLAR_KEYWORDS = getPillars("youtube");
+  const YT_PILLAR_KEYWORDS = await getPillars("youtube");
   const videos = await getYtVideos().catch(() => []);
 
   const matrixData = videos.map((v) => ({

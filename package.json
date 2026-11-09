@@ -8,7 +8,7 @@
     "lint": "eslint",
     "migrate": "node migrate.js",
     "seed": "node migrate.js seed",
-    "test": "node --test --experimental-strip-types lib/csv-parser.test.mjs"
+    "test": "node --test --experimental-strip-types lib/lib.test.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

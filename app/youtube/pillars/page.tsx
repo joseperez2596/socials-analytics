@@ -1,11 +1,13 @@
+import Link from "next/link";
 import { PillarCard } from "@/components/reports/pillar-card";
 import { getYtVideos } from "@/lib/queries/youtube";
-import { classifyByKeywords, getPillars } from "@/lib/pillar-classification";
+import { classifyByKeywords } from "@/lib/pillars/classify";
+import { getPillars } from "@/lib/pillars/store";
 
 const ACCENT = "#FF0000";
 
 export default async function YoutubePillarsPage() {
-  const YT_PILLAR_KEYWORDS = getPillars("youtube");
+  const YT_PILLAR_KEYWORDS = await getPillars("youtube");
   const videos = await getYtVideos().catch(() => []);
 
   type PillarStats = {
@@ -31,7 +33,12 @@ export default async function YoutubePillarsPage() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-bold">YouTube Pillars</h2>
+      <div className="flex items-baseline justify-between gap-3">
+        <h2 className="text-xl font-bold">YouTube Pillars</h2>
+        <Link href="/pillars?platform=youtube" className="font-mono text-xs text-ink/50 hover:text-ink underline underline-offset-4">
+          Edit keywords
+        </Link>
+      </div>
       {sorted.length === 0 ? (
         <p className="text-ink/40">No video data available.</p>
       ) : (
